@@ -39,7 +39,7 @@ shows the qualitative comparisons between the controllers.
 
 Latency of the controller denotes the time it takes to process a single packet. We tested the controller for latency performance. For this metric, we ran Cbench in latency mode which sends a packets to the controller and waits for response before sending another packet. We evaluated the controller swith different number of virtual OpenFlow switches emulated by Cbench. Each latency test was run for 10 iterations.
 
-INsert cbench latency image
+![Cbench Latency Mode (3)](https://user-images.githubusercontent.com/30312503/206818071-774b67cd-3daa-4523-b858-382695d5d1eb.png)
 
 Figure above shows the results obtained using Cbench tool's latency mode. Cbench latency identifies the communication delay between the controller and the switch. Here every switch is directly connected to the controller. In Cbench latency mode all the switches send packets to the controller in a serial manner and wait for its reply before sending the next packet. The reciprocal of the average number of flows processed by the controller gives the Cbench latency metric. For this particular experiment, we kept the number of test runs within the Cbench latency mode constant at 10 across all the controllers.
 
@@ -51,7 +51,10 @@ Following were our observations regarding different controllers based on Cbench 
 
 ### Cbench Throughput Mode
 
-In throughput mode, each switch sends as many packets as the switches' buffer allows to the controller without waiting for a reply. This is done because we essentially want to measure how many packets can be handled/processed by the controller at once per switch. Thus, the throughput mode measures the maximum flow rate that a controller can handle. In Cbench Throughput mode there are 10 thousand hosts connected to each switch.
+In throughput mode, each switch sends as many packets as the switches' buffer allows to the controller without waiting for a reply. This is done because we essentially want to measure how many packets can be handled/processed by the controller at once per switch. Thus, the throughput mode measures the maximum flow rate that a controller can handle. In Cbench Throughput mode there are 10 thousand hosts connected to each switch. The figure below shows the result for the same.
+
+![Cbench - throughput (1)](https://user-images.githubusercontent.com/30312503/206818086-7e654f29-4bec-4fab-98d7-2f5140ecbdbc.png)
+
 
 We present our results from the Cbench throughput mode in Fig \ref{cthroughmode} and list the observations.
 * Ryu and OpenDayLight were consistently the lowest performers. This was contrary to the results we expected, both Ryu and OpenDaylight because both of these controllers support multithreading. 
@@ -62,7 +65,9 @@ We present our results from the Cbench throughput mode in Fig \ref{cthroughmode}
 Node-to-node latency measures the amount of time required to send a packet and receive a reply between two hosts that are connected to L2-learning switches which are in turn connected to the controller. In our graphs, we present statistics gathered using the \textbf{Iperf} benchmarking tool as well as Ping statistics.
 In this experiment we tried to ping the farthest hosts within a network to get the worst possible ping time in that network, and tested this setting on different network topologies. We used TCP packets to ping the hosts. 
 
-We conducted 15 test rounds of pings between hosts, where the packet size was fixed to the default ping packet size. The results presented here include the ping time averaged over these 15 tests. Please note that the first ping between any two hosts for any of the controllers showed the highest ping time.
+We conducted 15 test rounds of pings between hosts, where the packet size was fixed to the default ping packet size. The results presented here include the ping time averaged over these 15 tests. Please note that the first ping between any two hosts for any of the controllers showed the highest ping time. Below figure shows the node to node latency of different controllers.
+
+![Node to Node Latency (3)](https://user-images.githubusercontent.com/30312503/206818118-a331609d-3f83-4423-b2c4-a59efcaba232.png)
 
    
 * Lower latency means better performance.
@@ -74,8 +79,11 @@ We conducted 15 test rounds of pings between hosts, where the packet size was fi
 ### Node to Node Throughput Mode
 
 In Node to Node throughput mode, we measure the maximum bandwidth utilized between 2 hosts using the Iperf tool. Iperf provides results in the form of "Interval", "Transfer Size" and "Bandwidth". Interval represents the time duration for which data was transferred between two hosts. Transfer Size specifies the amount of data to be transfered in Mega bytes and the Bandwidth specifies the number of Mega bits transfered per second.
-For the node-to-node throughput, we did our Iperf tests on TCP flows.
-We capture our results and visualize them in Fig \ref{nthroughmode}
+For the node-to-node throughput, we did our Iperf tests on TCP flows. 
+We capture our results and visualize them in the below Figure.
+
+![Node to Node throughput (2)](https://user-images.githubusercontent.com/30312503/206818140-9ad54a82-1e9e-4318-9f8b-20983b66a7a0.png)
+
 
 Our observations are as follows:
 * Ryu was consistently the best performer out of all the controllers across all topologies.
@@ -88,14 +96,19 @@ Our observations are as follows:
  ### Jitter
  
 For understanding what jitter is we need to understand the formal definition of Delay. \textit{Delay} is the difference between the transmission time from the sender and the reception time on the receiver. \textit{Jitter} on the other hand expresses the variation in Delay on packet flow between two To evaluate jitter, we used Iperf tests across topologies in the UDP mode. 
+
+![Jitter (1)](https://user-images.githubusercontent.com/30312503/206818170-e7e8b527-3d6e-4a16-bb34-bc3cc3d604c6.png)
+
 Figure above summarizes our results for Jitter analysis
-    
 * Ryu has the least jitter out of all the controllers under consideration, aka it has a fairly consistent delay.
 * ODL has fluctuating jitter while ONOS and POX have minimal jitter variation across topologies.
 
  ### Throughput for Multithreaded Controllers
  
-We also extended our research by testing the effects of multithreading on controller throughput. We observed that Ryu and Opendaylight have better throughput with increasing number of threads. However, Floodlight's performance drastically decreases with increasing thread. This result is contrary to the general behavior of this controller hence there is a  need for more experimental analysis since this observation deviates from our original hypothesis. 
+We also extended our research by testing the effects of multithreading on controller throughput. We observed that Ryu and Opendaylight have better throughput with increasing number of threads. However, Floodlight's performance drastically decreases with increasing thread. This result is contrary to the general behavior of this controller hence there is a  need for more experimental analysis since this observation deviates from our original hypothesis. The below figure shows the performance of the controllers when multithreading is enabled.
+
+![Throughput - Multithreaded (1)](https://user-images.githubusercontent.com/30312503/206818240-de2bc84b-ebcd-424a-a4fd-56e8f58ecff5.png)
+
 
 ### Inferences
 
