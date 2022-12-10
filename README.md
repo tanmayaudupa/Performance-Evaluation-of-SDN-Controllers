@@ -29,7 +29,8 @@ In our study, we have used mininet for building network topologies. Mininet is b
 
 ## RESULTS AND DISCUSSION
 
-insert table here
+<img width="449" alt="qualitative_comp_sdn" src="https://user-images.githubusercontent.com/30312503/206818921-e31c2a58-921e-439b-9f72-0b7d0242122e.png">
+
 
 We present the observations using graphical representation of our
 results and further it with some inferences we obtained. Table above
@@ -51,12 +52,12 @@ Following were our observations regarding different controllers based on Cbench 
 
 ### Cbench Throughput Mode
 
-In throughput mode, each switch sends as many packets as the switches' buffer allows to the controller without waiting for a reply. This is done because we essentially want to measure how many packets can be handled/processed by the controller at once per switch. Thus, the throughput mode measures the maximum flow rate that a controller can handle. In Cbench Throughput mode there are 10 thousand hosts connected to each switch. The figure below shows the result for the same.
+In throughput mode, each switch sends as many packets as the switches' buffer allows to the controller without waiting for a reply. This is done because we essentially want to measure how many packets can be handled processed by the controller at once per switch. Thus, the throughput mode measures the maximum flow rate that a controller can handle. In Cbench Throughput mode there are 10 thousand hosts connected to each switch. 
 
 ![Cbench - throughput (1)](https://user-images.githubusercontent.com/30312503/206818086-7e654f29-4bec-4fab-98d7-2f5140ecbdbc.png)
 
 
-We present our results from the Cbench throughput mode in Fig \ref{cthroughmode} and list the observations.
+We present our results from the Cbench throughput mode in the above figure and list the observations.
 * Ryu and OpenDayLight were consistently the lowest performers. This was contrary to the results we expected, both Ryu and OpenDaylight because both of these controllers support multithreading. 
 * Floodlight showed increased throughput with an increased number of switches indicating that it might be suitable for tasks that would want to maintain their throughput rates for large-scale networks.
 * Pox surprisingly showed fairly constant throughput rates. This might be true for small networks however we might need additional experiments to verify POX's performance in huge networks.
@@ -124,13 +125,5 @@ We also extended our research by testing the effects of multithreading on contro
  
  ### Conclusions
  
-From our project we have concluded that overall, all the controllers
-performed differently for different topologies. We have inferred
-that Multi-threaded controllers perform significantly better than
-single-threaded controllers like (POX and RYU). Different topolo-
-gies also has an impact on the performance metrics and, efficient
-handling of switches is characteristic to every controller. And our
-inference is that different controllers can be used in different use
-cases depending on the task at hand such as simple controllers are
-better suited for lightweight tasks and Feature based controllers
-are better suited for heavy performance tasks
+From our project we have concluded that overall, all the controllers performed differently for different topologies. We have inferred that Multi-threaded controllers perform significantly better than single-threaded controllers like (POX and RYU). Different topolo-
+gies also has an impact on the performance metrics and, efficient handling of switches is characteristic to every controller. And our inference is that different controllers can be used in different use cases depending on the task at hand such as simple controllers are better suited for lightweight tasks and Feature based controllers are better suited for heavy performance tasks
